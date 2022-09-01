@@ -1,0 +1,29 @@
+﻿<EditBookmarkComponent IsOpened="isOpenedEdit" IdCard="Bookmark.IdBookmark"></EditBookmarkComponent>
+<div class="bookmarks-container">
+    <div class="options-bookmark">
+        <button class="fas fa-edit" @onclick="OpenEdit"></button>
+        <button class="fas fa-trash" @onclick="DeleteBookmark"></button>
+    </div>
+    <div class="bookmark-name">
+        <span>@Bookmark.NameBookmark</span>
+    </div>
+    <div class="bookmark-path">
+        <a href="@Redirect()">@Bookmark.PathBookmark</a>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Bookmark Bookmark { get; set; }
+    private bool isOpenedEdit = false;
+
+    private void OpenEdit()
+    {
+        isOpenedEdit = true;
+    }
+    private string Redirect()
+    {
+        string redirect = "http://" + Bookmark.PathBookmark;
+        return redirect;
+    }
+}

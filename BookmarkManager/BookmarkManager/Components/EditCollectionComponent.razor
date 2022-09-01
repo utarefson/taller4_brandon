@@ -1,0 +1,18 @@
+﻿<div class="edit-collection @CssClass">
+    <div class="container-edit">
+        <span>Title Collection:</span>
+        <input @bind="Title" />
+        <div class="buttons">
+            <button @onclick="() => IsOpened = false">Cancel</button>
+            <button @onclick="EditCollection">Save</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool IsOpened { get; set; } = false;
+    private string CssClass => IsOpened ? "show" : "hide";
+    [Parameter]
+    public int IdCollection { get; set; }
+}

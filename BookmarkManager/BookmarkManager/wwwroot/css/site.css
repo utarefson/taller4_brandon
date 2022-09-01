@@ -1,0 +1,41 @@
+@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    height:100%;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.container-login-component {
+    width: 100%;
+    height: 100%;
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+.home-component-left{
+    width:23%;
+    height:100%;
+}
+
+.home-component-medium {
+    width:100%;
+    height: 100%;
+}
+
+.home-component-right {
+    width:18%;
+    height:100%;
+    border-left:groove;
+    border-width:1px;
+}

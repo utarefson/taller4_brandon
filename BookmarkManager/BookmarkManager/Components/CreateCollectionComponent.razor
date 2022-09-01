@@ -1,0 +1,15 @@
+﻿<div class="create-container">
+    <input @bind="NameCollection" />
+    <button class="button-cancel" value="Type the collection title" @onclick="CloseCreate">Cancel</button>
+    <button class="button-save" @onclick="CreateCollection">Save</button>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<bool> onResult { get; set; }
+
+    private void CloseCreate()
+    {
+        this.onResult.InvokeAsync(false);
+    }
+}

@@ -1,0 +1,20 @@
+﻿<div class="edit-bookmark @CssClass">
+    <div class="container-edit">
+        <span>Name:</span>
+        <input @bind="Name" />
+        <span>Path:</span>
+        <input @bind="Path" />
+        <div class="buttons">
+            <button @onclick="() => IsOpened = false">Cancel</button>
+            <button @onclick="EditCollection">Save</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool IsOpened { get; set; } = false;
+    private string CssClass => IsOpened ? "show" : "hide";
+    [Parameter]
+    public int IdCard { get; set; }
+}
