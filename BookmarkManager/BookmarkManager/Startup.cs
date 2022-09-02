@@ -18,6 +18,7 @@ namespace BookmarkManager
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddScoped<IGoogleDriveServices, GoogleDriveController>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

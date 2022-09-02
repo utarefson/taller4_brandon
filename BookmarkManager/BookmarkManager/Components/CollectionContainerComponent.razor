@@ -1,6 +1,6 @@
 ﻿<CreateBookmarkComponent IsOpened="isOpenedCreate" IdCollection="IdCollection"></CreateBookmarkComponent>
 <EditCollectionComponent IsOpened="isOpenedEdit" IdCollection="IdCollection"></EditCollectionComponent>
-@if (GetListDrive().CollectionList.Count == 0)
+@if (GetListGoogleDrive().CollectionList.Count == 0)
 {
     <div class="container-empty">
         <h2>No collections shared with this space yet</h2>
@@ -37,10 +37,10 @@ else
 }
 
 @code{
-    [Parameter]
-    public BaseContext BaseContext { get; set; }
-    private bool isOpenedCreate = false;
-    private bool isOpenedEdit = false;
+    [Parameter] public BaseContext BaseContext { get; set; }
+    
+    private bool isOpenedCreate;
+    private bool isOpenedEdit;
 
     private void GetIdCreateBookmark(int id)
     {

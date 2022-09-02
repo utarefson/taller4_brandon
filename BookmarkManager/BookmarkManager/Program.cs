@@ -8,7 +8,7 @@ namespace BookmarkManager
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            DriveServices driveService = new DriveServices();
+            GoogleDriveController driveService = new GoogleDriveController();
             driveService.GetDataBase();
         }
 

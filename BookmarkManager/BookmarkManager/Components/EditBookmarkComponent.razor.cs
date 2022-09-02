@@ -1,29 +1,25 @@
-﻿using Newtonsoft.Json;
-using System.IO;
-
-namespace BookmarkManager.Components
+﻿namespace BookmarkManager.Components
 {
     partial class EditBookmarkComponent
     {
         private string Name { get; set; }
         private string Path { get; set; }
-
-        DriveServices DriveService = new DriveServices();
+        private GoogleDriveController DriveService = new GoogleDriveController();
+        
         private async void EditCollection()
         {
+            var updateData = this.DriveService.GetListDrive();
             this.IsOpened = false;
-            foreach (var bookmark in DriveService.GetListDrive().BookmarkList)
+            foreach (var bookmark in updateData.BookmarkList)
             {
-                if (bookmark.IdBookmark == IdCard)
+                if (bookmark.IdBookmark == this.IdCard)
                 {
                     bookmark.NameBookmark = this.Name;
                     bookmark.PathBookmark = this.Path;
                 }
             }
-            string json = JsonConvert.SerializeObject(DriveService.DataBase);
 
-            File.WriteAllText(DriveService.filePath, json);
-            await DriveService.UpdateDataBase();
+            await this.DriveService.SaveChange(updateData);
         }
     }
 }

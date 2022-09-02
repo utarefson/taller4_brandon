@@ -4,17 +4,17 @@ using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using Newtonsoft.Json;
-using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace BookmarkManager
 {
-    public class DriveServices
+    public class GoogleDriveController : IGoogleDriveServices
     {
-        public string filePath = @"C:\Users\Brand\Desktop\Prueba\prueba.json";
-        public BaseContext DataBase = new BaseContext();
+        private const string IdFileOnGoogleDrive = "167N2AXm8xlZdXC-ucFxcahenakUbHo8i";
+        public const string FilePath = @"C:\Users\Brand\Desktop\Prueba\prueba.json";
+        public BaseContext DataBase = new();
 
         public DriveService GetServiceDrive()
         {
@@ -30,7 +30,6 @@ namespace BookmarkManager
                     "user",
                     CancellationToken.None,
                     new FileDataStore(credentialPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credentialPath);
             }
             var service = new DriveService(new BaseClientService.Initializer()
             {
@@ -41,11 +40,11 @@ namespace BookmarkManager
 
         public void GetDataBase()
         {
-            var request = GetServiceDrive().Files.Get("167N2AXm8xlZdXC-ucFxcahenakUbHo8i");
+            var request = this.GetServiceDrive().Files.Get(IdFileOnGoogleDrive);
             var stream = new MemoryStream();
             request.Download(stream);
 
-            using (FileStream file = new FileStream(filePath, FileMode.Create, FileAccess.ReadWrite))
+            using (FileStream file = new FileStream(FilePath, FileMode.Create, FileAccess.ReadWrite))
             {
                 stream.WriteTo(file);
             }
@@ -53,7 +52,7 @@ namespace BookmarkManager
 
         public BaseContext GetListDrive()
         {
-            using (StreamReader jsonStream = File.OpenText(filePath))
+            using (StreamReader jsonStream = File.OpenText(FilePath))
             {
                 var jsonR = jsonStream.ReadToEnd();
                 this.DataBase = JsonConvert.DeserializeObject<BaseContext>(jsonR);
@@ -63,18 +62,25 @@ namespace BookmarkManager
 
         public async Task UpdateDataBase()
         {
-            string updateFileId = "167N2AXm8xlZdXC-ucFxcahenakUbHo8i";
-            var updateFile = await GetServiceDrive().Files.Get(updateFileId).ExecuteAsync();
+            string updateFileId = IdFileOnGoogleDrive;
+            var updateFile = await this.GetServiceDrive().Files.Get(updateFileId).ExecuteAsync();
 
             var updateFileBody = new Google.Apis.Drive.v3.Data.File()
             {
                 Name = "DataBase.json"
             };
-            await using (var uploadStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            await using (var uploadStream = new FileStream(FilePath, FileMode.Open, FileAccess.Read))
             {
-                var updateRequest = GetServiceDrive().Files.Update(updateFileBody, updateFile.Id, uploadStream, "application/json");
+                var updateRequest = this.GetServiceDrive().Files.Update(updateFileBody, updateFile.Id, uploadStream, "application/json");
                 var result = await updateRequest.UploadAsync(CancellationToken.None);
             }
+        }
+
+        public async Task SaveChange(BaseContext baseContext)
+        {
+            string json = JsonConvert.SerializeObject(baseContext);
+            File.WriteAllText(GoogleDriveController.FilePath, json);
+            await this.UpdateDataBase();
         }
     }
 }

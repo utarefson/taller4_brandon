@@ -1,27 +1,24 @@
 ﻿using BookmarkManager.Data;
-using Newtonsoft.Json;
-using System.IO;
 
 namespace BookmarkManager.Components
 {
     partial class CreateCollectionComponent
     {
         private string NameCollection { get; set; }
+        private GoogleDriveController DriveService = new GoogleDriveController();
 
-        DriveServices DriveService = new DriveServices();
         private async void CreateCollection()
         {
+            var updateData = this.DriveService.GetListDrive();
             await this.onResult.InvokeAsync(false);
             var collection = new Collection
             {
-                IdCollection = DriveService.GetListDrive().CollectionList.Count,
+                IdCollection = updateData.CollectionList.Count,
                 NameCollection = this.NameCollection
             };
-            DriveService.DataBase.CollectionList.AddFirst(collection);
-            string json = JsonConvert.SerializeObject(DriveService.DataBase);
+            updateData.CollectionList.AddFirst(collection);
 
-            File.WriteAllText(DriveService.filePath, json);
-            await DriveService.UpdateDataBase();
+            await this.DriveService.SaveChange(updateData);
         }
     }
 }

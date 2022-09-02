@@ -1,7 +1,7 @@
 ﻿<div class="create-bookmark @CssClass">
     <div class="container-create">
         <span>Name page:</span>
-        <input @bind="NamePage" />
+        <input @bind="PageName" />
         <span>Path: </span>
         <input @bind="Path" />
         <div class="buttons">
@@ -12,9 +12,8 @@
 </div>
 
 @code {
-    [Parameter]
-    public bool IsOpened { get; set; } = false;
+    [Parameter] public bool IsOpened { get; set; } = false;
+    [Parameter] public int IdCollection { get; set; }
+
     private string CssClass => IsOpened ? "show" : "hide";
-    [Parameter]
-    public int IdCollection { get; set; }
 }

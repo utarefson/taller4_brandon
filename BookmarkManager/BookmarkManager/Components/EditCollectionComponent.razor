@@ -10,9 +10,8 @@
 </div>
 
 @code {
-    [Parameter]
-    public bool IsOpened { get; set; } = false;
+    [Parameter] public bool IsOpened { get; set; } = false;
+    [Parameter] public int IdCollection { get; set; }
+
     private string CssClass => IsOpened ? "show" : "hide";
-    [Parameter]
-    public int IdCollection { get; set; }
 }

@@ -1,41 +1,26 @@
 ﻿using BookmarkManager.Data;
-using Newtonsoft.Json;
-using System.IO;
+using System.Linq;
 
 namespace BookmarkManager.Components
 {
     partial class CollectionContainerComponent
     {
         private int IdCollection { get; set; }
-        DriveServices DriveService = new DriveServices();
+        private GoogleDriveController DriveService = new GoogleDriveController();
 
-        private BaseContext GetListDrive()
+        private BaseContext GetListGoogleDrive()
         {
-            BaseContext= DriveService.GetListDrive();
-            return DriveService.GetListDrive();
+            this.BaseContext = this.DriveService.GetListDrive();
+            return this.BaseContext;
         }
 
         private async void DeleteCollection(int id)
         {
-            BaseContext updateData = new BaseContext();
-            foreach (var collection in DriveService.GetListDrive().CollectionList)
-            {
-                if(collection.IdCollection != id)
-                {
-                    updateData.CollectionList.AddLast(collection);
-                }
-            }
-            foreach(var bookmark in DriveService.GetListDrive().BookmarkList)
-            {
-                if (bookmark.IdCollection != id)
-                {
-                    updateData.BookmarkList.AddLast(bookmark);
-                }
-            }
-            string json = JsonConvert.SerializeObject(updateData);
+            BaseContext updateData = this.GetListGoogleDrive();
+            updateData.CollectionList.Remove(updateData.CollectionList.Single(e => e.IdCollection == id));
+            updateData.BookmarkList.RemoveAll(e => e.IdCollection == id);
 
-            File.WriteAllText(DriveService.filePath, json);
-            await DriveService.UpdateDataBase();
+            await this.DriveService.SaveChange(updateData);
         }
     }
 }

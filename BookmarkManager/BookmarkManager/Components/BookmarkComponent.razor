@@ -8,20 +8,21 @@
         <span>@Bookmark.NameBookmark</span>
     </div>
     <div class="bookmark-path">
-        <a href="@Redirect()">@Bookmark.PathBookmark</a>
+        <a href="@GetRedirectURI()">@Bookmark.PathBookmark</a>
     </div>
 </div>
 
 @code {
-    [Parameter]
-    public Bookmark Bookmark { get; set; }
+    [Parameter] public Bookmark Bookmark { get; set; }
+
     private bool isOpenedEdit = false;
 
     private void OpenEdit()
     {
-        isOpenedEdit = true;
+        this.isOpenedEdit = true;
     }
-    private string Redirect()
+
+    private string GetRedirectURI()
     {
         string redirect = "http://" + Bookmark.PathBookmark;
         return redirect;
