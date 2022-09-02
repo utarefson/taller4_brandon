@@ -1,0 +1,19 @@
+﻿<div class="create-bookmark @CssClass">
+    <div class="container-create">
+        <span>Name page:</span>
+        <input @bind="PageName" />
+        <span>Path: </span>
+        <input @bind="Path" />
+        <div class="buttons">
+            <button @onclick="() => IsOpened = false">Cancel</button>
+            <button @onclick="CreateBookmark">Create</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public bool IsOpened { get; set; } = false;
+    [Parameter] public int IdCollection { get; set; }
+
+    private string CssClass => IsOpened ? "show" : "hide";
+}

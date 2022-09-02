@@ -1,0 +1,64 @@
+﻿.edit-collection {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.container-edit {
+    position: fixed;
+    left: 40%;
+    top: 40%;
+    color: white;
+    padding: 20px;
+    width: 350px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(246, 80, 119);
+    border-radius: 5px;
+}
+
+.edit-collection input {
+    color: white;
+    background-color: rgb(246, 80, 119);
+    border: none;
+    border-bottom: groove;
+    border-width: 1px;
+    border-color: white;
+    margin-bottom: 15px;
+}
+
+.edit-collection .buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    color: white;
+    background-color: rgb(246, 80, 119);
+    border: none;
+}
+
+
+.show {
+    display: block;
+    animation-name: show-animation;
+    animation-duration: 1s;
+}
+
+@keyframes show-animation {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.hide {
+    display: none;
+}

@@ -1,0 +1,38 @@
+﻿.open-close-navbar {
+    height: 55px;
+    border-bottom: groove;
+    border-width: 1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .open-close-navbar i {
+        padding-left: 10px;
+    }
+
+    .open-close-navbar h5 {
+        padding-top: 5px;
+        padding-right: 10px;
+    }
+
+.container-paths {
+    margin-top: 10px;
+    padding: 0 10px;
+}
+
+    .container-paths button {
+        font-weight: bold;
+        width: 100%;
+        color: rgb(246, 80, 119);
+        border: solid;
+        border-color: rgb(246, 80, 119);
+        border-radius: 5px;
+        border-width: 1.5px;
+        background-color: white;
+    }
+
+        .container-paths button i {
+            padding: 0 10px;
+        }

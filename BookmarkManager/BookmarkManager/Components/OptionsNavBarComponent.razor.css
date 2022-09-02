@@ -1,0 +1,49 @@
+﻿.container-options-navbar {
+    width: 100%;
+    margin-top: 25px;
+    height: 50px;
+    border-bottom: groove;
+    border-width: 1px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.options-navbar {
+    width: 80%;
+    margin-left: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+    .options-navbar button {
+        padding-left: 10px;
+        padding-right: 15px;
+        display: flex;
+        margin-top: -4px;
+        color: rgb(246, 80, 119);
+        background-color: white;
+        border: none;
+    }
+
+        .options-navbar button i {
+            padding-left: 10px;
+            display: flex;
+            margin-top: 4px;
+            padding-right: 10px;
+        }
+
+.button-navbar {
+    margin-right: 25px;
+    padding-bottom: 20px;
+}
+
+    .button-navbar button {
+        color: white;
+        background-color: rgb(246, 80, 119);
+        border-radius: 5px;
+        border: none;
+    }

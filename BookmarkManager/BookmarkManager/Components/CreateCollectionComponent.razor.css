@@ -1,0 +1,22 @@
+﻿.create-container {
+    width: 100%;
+    height: auto;
+    border-bottom: groove;
+    border-width: 1px;
+    padding: 25px 25px;
+    font-weight: bold;
+}
+    .create-container button{
+        border:none;
+        border-radius:5px;
+    }
+
+    .create-container .button-cancel {
+        background-color: white;
+        color: rgb(246, 80, 119);
+    }
+
+    .create-container .button-save {
+        background-color: rgb(246, 80, 119);
+        color:white;
+    }

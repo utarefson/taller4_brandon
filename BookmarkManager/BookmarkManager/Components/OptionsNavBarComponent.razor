@@ -1,0 +1,30 @@
+﻿<div class="container-options-navbar">
+    <div class="options-navbar">
+        <button><i class="fas fa-bars"></i> DRAG & DROP</button>
+        <button><i class="fas fa-tag"></i> TAG FILTER</button>
+        <button><i class="fas fa-th-large"></i> VIEW</button>
+        <button>EXPAND</button>
+        <button>COLLAPSE</button>
+    </div>
+    <div class="button-navbar">
+        <button @onclick="Open"><i class="fas fa-plus"></i> ADD COLLECTION</button>
+    </div>
+</div>
+@if (isOpened)
+{
+    <CreateCollectionComponent onResult="CloseCreate"></CreateCollectionComponent>
+}
+
+@code{
+    private bool isOpened = false;
+
+    private void Open()
+    {
+        this.isOpened = true;
+    }
+
+    private void CloseCreate(bool var)
+    {
+        this.isOpened = var;
+    }
+}

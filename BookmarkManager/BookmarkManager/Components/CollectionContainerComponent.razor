@@ -1,0 +1,62 @@
+﻿<CreateBookmarkComponent IsOpened="isOpenedCreate" IdCollection="IdCollection"></CreateBookmarkComponent>
+<EditCollectionComponent IsOpened="isOpenedEdit" IdCollection="IdCollection"></EditCollectionComponent>
+@if (GetListGoogleDrive().CollectionList.Count == 0)
+{
+    <div class="container-empty">
+        <h2>No collections shared with this space yet</h2>
+        <span>ADD OR SHARE COLLECTIONS WITH YOUR SPACE AND YOU WILL SEE THEM HERE</span>
+        <button><i class="fas fa-plus" /></button>
+    </div>
+}
+else
+{
+<div class="collection-container">
+    @foreach (var collection in BaseContext.CollectionList)
+    {
+    <div class="collection">
+        <div class="container-options">
+            <span>@collection.NameCollection</span>
+            <div class="collection-options">
+                <button id="icon" @onclick="() => GetIdEditCollection(collection.IdCollection)" class="fas fa-edit"></button>
+                <button class="fas fa-trash" id="icon" @onclick="() => DeleteCollection(collection.IdCollection)"></button>
+                <button @onclick="() => GetIdCreateBookmark(collection.IdCollection)"><i class="fas fa-plus"></i>Create Card</button>
+            </div>
+        </div>
+        <div class="container-card">
+            @foreach (var bookmark in BaseContext.BookmarkList)
+            {
+                if (@collection.IdCollection == bookmark.IdCollection)
+                {
+                    <BookmarkComponent Bookmark="@bookmark"></BookmarkComponent>
+                }
+            }
+        </div>
+    </div>
+    }
+</div>
+}
+
+@code{
+    [Parameter] public BaseContext BaseContext { get; set; }
+    
+    private bool isOpenedCreate;
+    private bool isOpenedEdit;
+
+    private void GetIdCreateBookmark(int id)
+    {
+        this.isOpenedCreate = true;
+        this.IdCollection = id;
+    }
+
+    private void GetIdEditCollection(int id)
+    {
+        this.isOpenedEdit = true;
+        this.IdCollection = id;
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        base.StateHasChanged();
+    }
+}

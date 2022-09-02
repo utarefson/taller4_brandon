@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32802.440
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookmarkManager", "BookmarkManager\BookmarkManager.csproj", "{64DDFF15-93CB-4965-9874-6C82249838F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{64DDFF15-93CB-4965-9874-6C82249838F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64DDFF15-93CB-4965-9874-6C82249838F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64DDFF15-93CB-4965-9874-6C82249838F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64DDFF15-93CB-4965-9874-6C82249838F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83F669FD-A2C6-4D48-92D2-21F9BF9D02F0}
+	EndGlobalSection
+EndGlobal
